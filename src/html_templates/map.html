@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>harita</title>
+	 <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
+	 <!--[if lte IE 8]>
+	     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
+	 <![endif]-->
+	  <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+	   <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
+</head>
+<body>
+
+<!-- define a the area the map will go into. Feel free to change the size as needed -->
+<div id="map" style="width:800px; height: 500px;"></div>
+
+
+<script>
+
+var map = L.map('map').setView([42.35, -71.08], 13);
+
+
+// we need to provide the map with some base map tiles. There are few free options.
+// we'll use Stamen Acetate, a muted base map good for overlaying data.
+// if you'd like to explore other base maps, see: http://developer.mapquest.com/web/products/open/map
+
+// if you use different tiles, be sure to update the attribution :)
+L.tileLayer('http://tiles.mapc.org/basemap/{z}/{x}/{y}.png',
+{
+  attribution: 'Tiles by <a href="http://mapc.org">MAPC</a>, Data by <a href="http://mass.gov/mgis">MassGIS</a>',
+  maxZoom: 17,
+  minZoom: 5
+}).addTo(map);
+
+map.on('click', onMapClick);
+
+function onMapClick(e){
+    lat = e.latlng.lat;
+    lon = e.latlng.lng;
+	var current_cor = [lat,lon];
+	marker = L.marker(current_cor, {
+
+title: "Resource Location",
+alt: "Resource Location",
+riseOnHover: true,
+draggable: true,
+
+}).bindPopup("<input type='button' value='işaretçiyi sil' class='marker-delete-button'/>");
+		
+map.addLayer(marker);
+marker.on("popupopen", onPopupOpen);
+		
+};
+function onPopupOpen() {
+
+var tempMarker = this;
+
+// To remove marker on click of delete button in the popup of marker
+$(".marker-delete-button:visible").click(function () {
+	map.removeLayer(tempMarker);
+});
+}
+</script>
+
+</body>
+</html>
