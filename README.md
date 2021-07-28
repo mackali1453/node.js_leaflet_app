@@ -21,7 +21,7 @@ docker run -d -p 3000:3000 webapp
 
 ```
 ## Usage with node.js
-Type "nodemon"
+Go to app folder and type "nodemon"
 
 ## After running app
 Go to your browser and type "http://localhost:3000/login". This routes to login page. There are two button which route to map or calendar page. Just click whatever you want.
