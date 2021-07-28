@@ -13,7 +13,7 @@
 <body>
 
 <!-- define a the area the map will go into. Feel free to change the size as needed -->
-<div id="map" style="width:800px; height: 500px;"></div>
+<div id="map" style="width:800px; height: 500px;"></div> 
 
 
 <script>
@@ -35,7 +35,7 @@ L.tileLayer('http://tiles.mapc.org/basemap/{z}/{x}/{y}.png',
 
 map.on('click', onMapClick);
 
-function onMapClick(e){
+function onMapClick(e){//for create click event marker
     lat = e.latlng.lat;
     lon = e.latlng.lng;
 	var current_cor = [lat,lon];
@@ -52,7 +52,7 @@ map.addLayer(marker);
 marker.on("popupopen", onPopupOpen);
 		
 };
-function onPopupOpen() {
+function onPopupOpen() {//for deleting marker
 
 var tempMarker = this;
 
